@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Login to Your Account</h1><br>
+    <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
+    <input type="text"  placeholder="email"  formControlName='email'>
+     <span class="has-error"  *ngIf = "!loginForm.get('email').valid &&  loginForm.get('email').touched">Please Enter Valid Email Address</span>
+     <input type="password"  placeholder="Password" formControlName='password'>
+     <span class="has-error" *ngIf = "!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Please Enter the password and minimum 3 digit </span>
+     
+     <input type="submit"    class="login loginmodal-submit" [disabled] = "!loginForm.valid" value="Login">
+    </form>
+    
+    <div class="login-help">
+    <a href="#">Register</a> - <a href="#">Forgot Password</a>
+    </div>
+  </div>
+</div>
