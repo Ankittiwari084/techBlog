@@ -12,7 +12,8 @@ export class AdminComponent implements OnInit {
   errorMessage:string = "";
   constructor(private userServices:UserService,public router:Router) { }
   loginForm: FormGroup;
-
+  //user = JSON.parse(localStorage.getItem('userData'));
+  finalResponce:any;
   ngOnInit() {
     this.loginForm = new FormGroup({
       'email': new FormControl('',Validators.compose([Validators.required,Validators.email])),
@@ -24,6 +25,14 @@ export class AdminComponent implements OnInit {
     this.userServices.loginServices(this.loginForm.value).subscribe(
       (response) => {
         if(response.status == 200){
+          console.log(response.json().data);
+         this.finalResponce =  response.json().data;
+          localStorage.setItem(
+            'userData',
+            JSON.stringify(
+              {
+                'token':this.finalResponce[1].token,'otherDetail':this.finalResponce[0]
+              }));        
           this.errorMessage = "";
           this.router.navigate(['home']);
         }else{
