@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 if (mongoose.connection.readyState === 0) {
-  mongoose.connect(require('./connection-string'));
+  mongoose.connect(require(process.cwd()+'/server/models/connection-string'));
 }
 
 

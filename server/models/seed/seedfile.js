@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-require('../all-models').toContext(global);
+require(process.cwd()+'/server/all-models').toContext(global);
 
 
 User.create([

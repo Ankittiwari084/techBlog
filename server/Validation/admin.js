@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/all-models');
+var models = require(process.cwd()+'/server/models/all-models');
 
 module.exports = {
     login:login

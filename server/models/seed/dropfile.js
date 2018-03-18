@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // require all models in the 'models' directory
-var models = require('../all-models');
+var models = require(process.cwd()+'/server/all-models');
 
 
 var args = process.argv.slice(2);

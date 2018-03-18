@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/all-models');
+var models = require(process.cwd()+'/server/models/all-models');
 var md5 = require('md5');
-var adminValidation = require('../Validation/admin');
+var adminValidation = require(process.cwd()+'/server/Validation/admin');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var config = require('../config/config');
-var VerifyToken = require('../auth/verifyToken');
+var config = require(process.cwd()+'/server/config/config');
+var VerifyToken = require(process.cwd()+'/server/auth/verifyToken');
 module.exports = {
     login:login,
     getUserData:getUserData

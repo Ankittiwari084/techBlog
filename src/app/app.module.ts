@@ -12,14 +12,17 @@ import { HeaderComponent } from './header/header.component';
 import { AdminComponent } from './admin/admin.component';
 import {  ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { FooterComponent } from './footer/footer.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { SliderComponent } from './slider/slider.component';
 
 const appRoutes:  Routes = [
   {path:'home', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'admin', component:AdminComponent},
- 
-  { path: '**', component: PageNotFoundComponent }
+  {path:'admin', component:AdminComponent}, 
+  { path: '**', component: HomeComponent },
+  
 ];
 
 @NgModule({
@@ -30,7 +33,10 @@ const appRoutes:  Routes = [
     RegisterComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    AdminComponent
+    AdminComponent,
+    FooterComponent,
+    NavigationComponent,
+    SliderComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes,{enableTracing:false}),

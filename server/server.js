@@ -1,7 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var models = require('./models/all-models');
 var path = require('path');
+
+var models = require(__dirname+'/models/all-models');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
@@ -9,9 +10,9 @@ var md5 = require('md5');
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var config = require('./config/config');
+var config = require(__dirname+'/config/config');
 
-var admin = require('./route/admin');
+var admin = require(__dirname+'/route/admin');
 var app  = express();
 
 // set for cros origin

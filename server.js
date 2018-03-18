@@ -1,0 +1,1 @@
+/var/www/html/techBlog/server/server.js

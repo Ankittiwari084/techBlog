@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 
 // require all models in the 'models' directory
-require('../all-models').toContext(global);
+require(process.cwd()+'/server/all-models').toContext(global);
 
 var shell = repl.start({
   prompt: 'mongoose> ',
