@@ -15,15 +15,9 @@ import { UserService } from './services/user.service';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SliderComponent } from './slider/slider.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes:  Routes = [
-  {path:'home', component:HomeComponent},
-  {path:'login', component:LoginComponent},
-  {path:'register/:id/:name', component:RegisterComponent},
-  {path:'admin', component:AdminComponent}, 
-  { path: '**', component: HomeComponent },
-  
-];
+
 
 @NgModule({
   declarations: [
@@ -39,7 +33,7 @@ const appRoutes:  Routes = [
     SliderComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes,{enableTracing:false}),
+    AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
