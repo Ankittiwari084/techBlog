@@ -40,6 +40,6 @@ app.use(function(req, res, next) {
  });
 
 
-app.listen(3000,function(){
+app.listen(process.env.port || 3000,function(){
     console.log("Server is started!");
 });
