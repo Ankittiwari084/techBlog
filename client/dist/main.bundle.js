@@ -725,7 +725,7 @@ var SliderComponent = /** @class */ (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/',
+    apiUrl: 'https://sleepy-garden-39528.herokuapp.com/',
 };
 
 
