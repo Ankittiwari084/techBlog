@@ -6,9 +6,9 @@
 
 var url = require('url')
 
-var uri = 'mongodb://root:root@ds161580.mlab.com:61580/online_exam';
+//var uri = 'mongodb://root:root@ds161580.mlab.com:61580/online_exam';
 
-//var uri = 'mongodb://localhost:27017/techBlog';
+var uri = 'mongodb://localhost:27017/techBlog';
 if (!uri) {
   throw new Error(
     '\033[31mYou need to provide the connection string. ' +

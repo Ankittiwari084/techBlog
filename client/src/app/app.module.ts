@@ -16,6 +16,9 @@ import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SliderComponent } from './slider/slider.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
 
 
 
@@ -30,7 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     AdminComponent,
     FooterComponent,
     NavigationComponent,
-    SliderComponent
+    SliderComponent,
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,7 +44,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule
     
   ],
-  providers: [UserService],
+  providers: [UserService,AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
