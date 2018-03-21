@@ -6,6 +6,11 @@
 
 var url = require('url')
 
+<<<<<<< HEAD
+=======
+var uri = 'mongodb://online_exam:root@ds161580.mlab.com:61580/online_exam';
+
+>>>>>>> master
 //var uri = 'mongodb://localhost:27017/techBlog';
 var uri =  'mongodb://root:root@ds161580.mlab.com:61580/online_exam';
 if (!uri) {

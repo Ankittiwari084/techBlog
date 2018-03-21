@@ -115,7 +115,8 @@ jQuery(document).ready(function($) {
       map: map
     });
   }
-  google.maps.event.addDomListener(window, 'load', initialize_google_map);
+
+google.maps.event.addDomListener(window, 'load', initialize_google_map);
 
 });
 
@@ -129,3 +130,5 @@ $(window).scroll(function() {
     $('.fade').stop(true, true).fadeTo("slow", 0.33);
   }
 });
+   
+  

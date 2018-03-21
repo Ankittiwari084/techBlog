@@ -16,7 +16,12 @@ import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SliderComponent } from './slider/slider.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminTopComponent } from './admin/admin-top/admin-top.component';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 
 @NgModule({
@@ -30,17 +35,21 @@ import { AppRoutingModule } from './app-routing.module';
     AdminComponent,
     FooterComponent,
     NavigationComponent,
-    SliderComponent
+    SliderComponent,
+    DashboardComponent,
+    SidebarComponent,
+    AdminTopComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Angular2FontawesomeModule
     
   ],
-  providers: [UserService],
+  providers: [UserService,AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

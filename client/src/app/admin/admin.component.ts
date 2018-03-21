@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router }  from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   errorMessage:string = "";
-  constructor(private userServices:UserService,public router:Router) { }
+  constructor(private userServices:UserService,public router:Router,public authService: AuthService) { }
   loginForm: FormGroup;
   //user = JSON.parse(localStorage.getItem('userData'));
   finalResponce:any;
@@ -19,6 +20,8 @@ export class AdminComponent implements OnInit {
       'email': new FormControl('',Validators.compose([Validators.required,Validators.email])),
       'password': new FormControl(null,Validators.compose([Validators.required,Validators.minLength(4)]))
     });
+    this.checkLogin();
+
   }
 
   onSubmit(){
@@ -34,7 +37,7 @@ export class AdminComponent implements OnInit {
                 'token':this.finalResponce[1].token,'otherDetail':this.finalResponce[0]
               }));        
           this.errorMessage = "";
-          this.router.navigate(['home']);
+          this.router.navigate(['/admin/dashboard']);
         }else{
           this.errorMessage = "Email Id or password is invalid";
         }
@@ -45,5 +48,13 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // check if user login then redirect dashboard page.
+  checkLogin(){
+    this.authService.isAuthenticated().then((authentication:boolean)=>{
+      if(authentication){
+        this.router.navigate(['admin/dashboard'])
+      }
+    })
+  }
  
 }
