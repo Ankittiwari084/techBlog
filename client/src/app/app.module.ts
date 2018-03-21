@@ -19,7 +19,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
-
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminTopComponent } from './admin/admin-top/admin-top.component';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 
 @NgModule({
@@ -34,14 +36,17 @@ import { AuthService } from './auth.service';
     FooterComponent,
     NavigationComponent,
     SliderComponent,
-    DashboardComponent
+    DashboardComponent,
+    SidebarComponent,
+    AdminTopComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Angular2FontawesomeModule
     
   ],
   providers: [UserService,AuthGuard,AuthService],

@@ -1,6 +1,7 @@
 import { resolve } from "url";
 import { reject } from "q";
 import { promise } from "protractor";
+import { truncate } from "fs";
 
 export class AuthService {
     loggedIn = false;
@@ -23,8 +24,11 @@ export class AuthService {
         );
         return promise;
     }   
-    
-    logout(){
-        this.loggedIn = false;
+    // this function for logout.
+    logout(){       
+        localStorage.removeItem('userData');
+        
+        return true;
+            
     }
 }
