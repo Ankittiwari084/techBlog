@@ -2,6 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes } from '@angular/router';
 import { HttpModule} from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatIconModule,
+MatInputModule,
+MatGridListModule,MatPaginatorModule, 
+MatTableModule,
+MatProgressBarModule,MatSnackBarModule} from '@angular/material';
+import {NotificationsModule, NotificationsService} from 'angular4-notify';
+
+import 'hammerjs';
+
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +32,12 @@ import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminTopComponent } from './admin/admin-top/admin-top.component';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+import { SettingsComponent } from './admin/settings/settings.component';
+import { AddSettingsComponent } from './admin/settings/add-settings.component';
+import { EditSettingComponent } from './admin/settings/edit-setting.component';
+import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './admin/forgot-password/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -38,7 +54,12 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     SliderComponent,
     DashboardComponent,
     SidebarComponent,
-    AdminTopComponent
+    AdminTopComponent,
+    SettingsComponent,
+    AddSettingsComponent,
+    EditSettingComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     AppRoutingModule,
@@ -46,8 +67,19 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
-    Angular2FontawesomeModule
-    
+    Angular2FontawesomeModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCardModule,
+    MatMenuModule,
+    MatToolbarModule, 
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   providers: [UserService,AuthGuard,AuthService],
   bootstrap: [AppComponent]

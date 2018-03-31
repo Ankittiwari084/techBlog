@@ -45,8 +45,14 @@
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
   -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: ;
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus {
+  border-color: #e9322d;
+  -webkit-box-shadow: none !important;
+  box-shadow: 0 0 6px #f8b9b7;
 }
 
 .loginmodal {

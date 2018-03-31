@@ -14,6 +14,8 @@
  
  */
 /*      light colors         */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 @keyframes spin {
   from {
     transform: rotate(0deg); }
@@ -2813,3 +2815,7 @@ body > .navbar-collapse {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+.ma_cat{
+      width: 96%;
+      margin-left: 14px;
+  }

@@ -8,20 +8,30 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeaderComponent } from './header/header.component';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-
+import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './admin/forgot-password/reset-password/reset-password.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SliderComponent } from './slider/slider.component';
 import { NgModule, Component } from '@angular/core';
 import { AuthGuard } from './auth-guard.service';
-
+import { SettingsComponent } from './admin/settings/settings.component';
+import { AddSettingsComponent } from './admin/settings/add-settings.component';
+import { EditSettingComponent } from './admin/settings/edit-setting.component';
 const appRoutes:  Routes = [
     {path:'home', component:HomeComponent},
     {path:'login', component:LoginComponent},
+    {path:'admin/forgot_password', component:ForgotPasswordComponent},
+    {path:'admin/forgot_password/:token', component:ResetPasswordComponent},
+    
     {path:'register/:id/:name', component:RegisterComponent},
     {path:'admin',  component:AdminComponent},
     {path:'admin/dashboard',canActivate:[AuthGuard],component: DashboardComponent},
+    {path:'admin/setting',canActivate:[AuthGuard],component: SettingsComponent},
+    {path:'admin/add-setting',canActivate:[AuthGuard],component: AddSettingsComponent},
+    {path:'admin/edit-setting/:id',canActivate:[AuthGuard],component: EditSettingComponent},
     
+     
     { path: '**', component: HomeComponent },
 ];
 

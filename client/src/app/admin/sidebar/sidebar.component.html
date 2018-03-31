@@ -8,16 +8,24 @@
 
         <ul class="nav">
             <li class="active">
-                <a href="dashboard.html">
+                <a routerLink="/admin/dashboard">
                     <i class="pe-7s-graph"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li>
-                <a href="user.html">
+                <!-- <a routerLink="/admin/setting">
                     <i class="pe-7s-user"></i>
-                    <p>User Profile</p>
+                    <p>Manage  Settings</p>
+                </a> -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="pe-7s-user"></i>
+                        <p>Manage  Settings</p>
                 </a>
+                <ul class="dropdown-menu" style="margin-left: 23px;">
+                    <li ><a style="color: black" routerLink="/admin/setting"><p>List Settings</p></a></li>
+                    <li ><a style="color: black" routerLink="/admin/add-setting"><p>Add Settings</p></a></li>                   
+                </ul>
             </li>
             <li>
                 <a href="table.html">
