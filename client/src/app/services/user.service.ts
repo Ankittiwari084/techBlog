@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers,  } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 import { environment } from '../../environments/environment';
 import {RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { Setting } from '../models/setting.model';
+import { Categories } from '../models/categories.model';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { MatSnackBar } from '@angular/material';
@@ -80,5 +84,23 @@ export class UserService {
     });
   }
 
+  checkOldPassword(value){
+    
+    return this.http.post(environment.apiUrl+'admin/get_old_Password/',{'old_password':value},{
+      headers:this.getHeader()
+    }); 
+  }
+
+  updatePassword(formValue){
+    return this.http.post(environment.apiUrl+'admin/change_password/',{'confirm_password':formValue.confirm_password,'ew_password':formValue.new_password},{
+      headers:this.getHeader()
+    });    
+  }
+
+  getCategories(){
+    return this.http.get(environment.apiUrl+'admin/get_categories',{
+      headers:this.getHeader()
+    });
+  }
 }
   

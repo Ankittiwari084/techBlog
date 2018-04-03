@@ -8,7 +8,9 @@ import { PasswordValidation } from './password-validation';
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['../../admin.component.css',
-  '../forgot-password.component.css']
+  '../forgot-password.component.css',
+  '../../../../assets/css/light-bootstrap-dashboard.css'
+]
 })
 export class ResetPasswordComponent implements OnInit {
   token:string;

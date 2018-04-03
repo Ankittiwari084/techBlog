@@ -18,7 +18,9 @@ module.exports = {
     updateSetting:updateSetting,
     deleteSetting:deleteSetting,
     sendMailForgotPassword:sendMailForgotPassword,
-    resetPassword:resetPassword
+    resetPassword:resetPassword,
+    getOldPassword:getOldPassword,
+    changePassword:changePassword
 }
 
 
@@ -287,4 +289,63 @@ function resetPassword(req,res,next){
             message:'Password not update may be server problem'
         })
     })
+}
+
+function getOldPassword(req,res,next){
+    models.User.find({
+        password:md5(req.body.old_password),
+        _id:req.userId
+    }).select({
+        password:1
+    }).then(function(response){
+        if(response.length > 0){
+            return res.status(200).json({
+                status:true,
+                data:response[0].password,
+                message:'password match'
+            })
+        }else{
+            return res.status(200).json({
+                status:false,
+                data:null,
+                message:'password does not match'
+            })
+        }
+    }).catch(function(error){
+        return res.status(500).json({
+            status:false,
+            data:null,
+            message:'server error'
+        })
+    })
+}
+
+function changePassword(req,res,next){
+    adminValidation.changePassword(req,res,function(error,validationError){
+        if(error == true){
+                res.status(603).json({
+                    status:false,
+                    data:validationError.error,
+                    message:'validation error'
+                });
+        }else{
+            models.User.findByIdAndUpdate(req.userId,{password:md5(req.body.new_password)})
+            .select({password:0}).then(function(response){
+                
+                if(response){
+                    return res.status(200).json({
+                        status:true,
+                        data:response,
+                        message:'Password has been updated'
+                    })
+                }
+            }).catch(function(err){
+                return res.status(500).json({
+                    status:false,
+                    data:null,
+                    message:'Password has not updated'
+                })
+            })
+        }
+    });
 }

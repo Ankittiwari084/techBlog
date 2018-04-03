@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var md5 = require('md5');
 var admin = require('../controller/admin');
+var category = require('../controller/categories');
 var VerifyToken = require('../auth/verifyToken');
 
 router.post('/login',admin.login);
@@ -13,4 +14,12 @@ router.put('/update_setting/:id',VerifyToken.verifyToken,admin.updateSetting);
 router.get('/delete_setting/:id',VerifyToken.verifyToken,admin.deleteSetting);
 router.post('/send_email_forgot_password/',admin.sendMailForgotPassword);
 router.post('/verify_token',VerifyToken.verifyToken,admin.resetPassword);
+router.post('/get_old_Password',VerifyToken.verifyToken,admin.getOldPassword);
+router.post('/change_password',VerifyToken.verifyToken,admin.changePassword);
+
+// category module router.
+
+router.post('/add_category',VerifyToken.verifyToken,category.addCategory);
+router.get('/get_categories',VerifyToken.verifyToken,category.getCategories);
+
 module.exports = router;

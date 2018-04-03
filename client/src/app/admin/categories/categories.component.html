@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <app-admin-top></app-admin-top>
+    <mat-progress-bar mode="indeterminate" *ngIf="!serverResponse"></mat-progress-bar>
+    <div class="example-container mat-elevation-z8">
+      <div class="row">
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-3">
+          
+        </div>
+        <div class="col-md-3">
+            <button mat-raised-button color="primary" style="margin-left: 107px;
+            margin-top: 2px;
+            margin-bottom: 8px;" (click)="openDialog()">Add</button>
+          
+        </div>
+      </div>
+        <mat-table [dataSource]="dataSource" class="ma_cat" matSort>
+        <!-- create a column-->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </mat-header-cell>
+          <mat-cell *matCellDef="let category">{{category.name }}</mat-cell>
+        </ng-container>   
+        
+        <ng-container matColumnDef="is_publish">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Is Publish </mat-header-cell>
+          <mat-cell *matCellDef="let category">{{category.is_publish?'Yes':'No'}}</mat-cell>
+        </ng-container>   
+       
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+      
+      <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"  [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+    
+  </div>
+</div>    
