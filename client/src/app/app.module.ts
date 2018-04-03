@@ -3,11 +3,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes } from '@angular/router';
 import { HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatIconModule,
-MatInputModule,
-MatGridListModule,MatPaginatorModule, 
-MatTableModule,
-MatProgressBarModule,MatSnackBarModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatIconModule,MatInputModule, MatGridListModule,MatPaginatorModule, MatTableModule,MatDividerModule,MatProgressBarModule,MatSnackBarModule,MatSortModule,MatDialogModule, MatSlideToggleModule} from '@angular/material';
 import {NotificationsModule, NotificationsService} from 'angular4-notify';
 
 import 'hammerjs';
@@ -38,6 +34,9 @@ import { AddSettingsComponent } from './admin/settings/add-settings.component';
 import { EditSettingComponent } from './admin/settings/edit-setting.component';
 import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './admin/forgot-password/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './admin/change-password/change-password.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { AddCategoryDialog } from './admin/categories/categories.component';
 
 
 @NgModule({
@@ -59,7 +58,13 @@ import { ResetPasswordComponent } from './admin/forgot-password/reset-password/r
     AddSettingsComponent,
     EditSettingComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangePasswordComponent,
+    CategoriesComponent,
+    AddCategoryDialog
+  ],
+  entryComponents: [
+    AddCategoryDialog
   ],
   imports: [
     AppRoutingModule,
@@ -79,7 +84,11 @@ import { ResetPasswordComponent } from './admin/forgot-password/reset-password/r
     MatTableModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatSortModule,
+    MatDialogModule,
+    MatSlideToggleModule
   ],
   providers: [UserService,AuthGuard,AuthService],
   bootstrap: [AppComponent]

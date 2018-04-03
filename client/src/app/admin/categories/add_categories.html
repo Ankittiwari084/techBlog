@@ -1,0 +1,19 @@
+<form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+    <mat-grid-list cols="1">
+      <mat-form-field class="example-full-width">
+          <input  matInput  placeholder="Category Name" formControlName = "name" name="name" #name (blur)="checkExist(name.value)"  >
+      </mat-form-field>
+      <span style="color: red" *ngIf="!addCategoryForm.controls['name'].valid && addCategoryForm.controls['name'].touched">Please enter category name </span>              
+    </mat-grid-list>
+    <mat-grid-list cols="1">
+        <mat-slide-toggle formControlName = "is_publish" name="is_publish" >is Publish!</mat-slide-toggle>
+    </mat-grid-list>
+  
+   
+        <div class="button-row pull-right">
+            <button  mat-raised-button color="primary" >Submit</button>
+        </div>
+  
+      
+    
+</form>    

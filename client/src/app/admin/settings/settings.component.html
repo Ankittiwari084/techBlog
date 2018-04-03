@@ -27,7 +27,7 @@
         <ng-container matColumnDef="_id">
           <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
           <mat-cell *matCellDef="let setting">
-              <a routerLink="/admin/edit-setting/{{setting._id}}">
+              <a [routerLink]="['/admin/edit-setting/',setting._id]">
                 <mat-icon aria-label="Example icon-button with a edit icon">edit</mat-icon>
               </a> 
               <button mat-icon-button color="warn" (click)="deleteSetting(setting._id)">

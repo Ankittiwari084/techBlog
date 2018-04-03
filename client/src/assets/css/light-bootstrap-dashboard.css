@@ -2819,3 +2819,31 @@ body > .navbar-collapse {
       width: 96%;
       margin-left: 14px;
   }
+
+  textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+    border-color: none !important;
+    outline: 0;
+    outline: thin dotted;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+ background-color:none !important;
+ border:none !important;
+  -webkit-box-shadow: none !important;
+   box-shadow: none !important;
+  -webkit-transition: none !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+   transition: none !important;
+   transition: none !important;
+  box-shadow: none !important;
+}
+.example-full-width {
+  width: 100%;
+}
+button{
+  width: 100px;
+  height: 50px;
+}

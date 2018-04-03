@@ -5,7 +5,8 @@ var models = require('../models/all-models');
 module.exports = {
     login:login,
     setting:setting,
-    forgotPassword:forgotPassword
+    forgotPassword:forgotPassword,
+    changePassword:changePassword
 }
 
 // this function responsbel for validation only
@@ -67,4 +68,21 @@ function forgotPassword(req,res){
         }
     })
     
+}
+function changePassword(req,res,callback){
+    var data = [];
+    req.checkBody('new_password','new password is missinf').notEmpty();
+    req.checkBody('confirm_password',' confirm password is missing').notEmpty();
+    req.getValidationResult().then(function(result){
+        if(!result.isEmpty()){
+            data.error = result.array();
+            data.error_status = true;
+            
+            callback(true,data);
+        }else{
+            data.error = null;
+            data.error_status = false;
+            callback(null,data);
+        }
+    })
 }

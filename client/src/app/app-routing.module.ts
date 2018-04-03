@@ -18,6 +18,9 @@ import { AuthGuard } from './auth-guard.service';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { AddSettingsComponent } from './admin/settings/add-settings.component';
 import { EditSettingComponent } from './admin/settings/edit-setting.component';
+import { ChangePasswordComponent } from './admin/change-password/change-password.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+
 const appRoutes:  Routes = [
     {path:'home', component:HomeComponent},
     {path:'login', component:LoginComponent},
@@ -30,8 +33,13 @@ const appRoutes:  Routes = [
     {path:'admin/setting',canActivate:[AuthGuard],component: SettingsComponent},
     {path:'admin/add-setting',canActivate:[AuthGuard],component: AddSettingsComponent},
     {path:'admin/edit-setting/:id',canActivate:[AuthGuard],component: EditSettingComponent},
+    {path:'admin/change_password',canActivate:[AuthGuard],component:ChangePasswordComponent},     
     
-     
+    // category path.
+
+    {path:'admin/categories',canActivate:[AuthGuard],component:CategoriesComponent},     
+
+    
     { path: '**', component: HomeComponent },
 ];
 
