@@ -21,5 +21,6 @@ router.post('/change_password',VerifyToken.verifyToken,admin.changePassword);
 
 router.post('/add_category',VerifyToken.verifyToken,category.addCategory);
 router.get('/get_categories',VerifyToken.verifyToken,category.getCategories);
+router.get('/delete_category/:id',VerifyToken.verifyToken,category.deleteCategory);
 
 module.exports = router;

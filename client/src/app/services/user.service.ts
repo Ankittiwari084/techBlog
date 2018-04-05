@@ -102,5 +102,17 @@ export class UserService {
       headers:this.getHeader()
     });
   }
+
+  addCategory(value){
+    return this.http.post(environment.apiUrl+'admin/add_category',value,{
+      headers:this.getHeader()
+    })
+  }
+
+  deleteCategory(id){
+    return this.http.get(environment.apiUrl+'admin/delete_category/'+id,
+    {headers:this.getHeader()}
+  );
+  }
 }
   

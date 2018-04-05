@@ -32,6 +32,15 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>Is Publish </mat-header-cell>
           <mat-cell *matCellDef="let category">{{category.is_publish?'Yes':'No'}}</mat-cell>
         </ng-container>   
+
+        <ng-container matColumnDef="_id">
+          <mat-header-cell *matHeaderCellDef >Actions </mat-header-cell>
+          <mat-cell *matCellDef="let category">
+            <button mat-icon-button color="warn" (click)="deleteSetting(category._id)">
+              <mat-icon aria-label="Example icon-button with a delete icon" >delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>   
        
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

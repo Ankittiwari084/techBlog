@@ -11,7 +11,8 @@ var VerifyToken = require('../auth/verifyToken');
 
 module.exports = {
     addCategory:addCategory,
-    getCategories:getCategories
+    getCategories:getCategories,
+    deleteCategory:deleteCategory
 }
 
 function addCategory(req,res,next){
@@ -63,5 +64,25 @@ function getCategories(req,res,next){
             message:'list could not get may be server problem',
             status:true
         })
+    })
+}
+
+function deleteCategory(req,res,next){
+    models.Categories.findByIdAndRemove(req.params.id).then(function(response){
+        if(response){
+            return res.status(200).json({
+                status:true,
+                data:response,
+                message:'delete sucessfuly'
+            })
+        }else{
+            return res.status(203).json({
+                status:true,
+                data:response,
+                message:'data delele'
+            }) 
+        }
+    }).catch(function(error){
+        next(error);
     })
 }
