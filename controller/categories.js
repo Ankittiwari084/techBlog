@@ -12,7 +12,8 @@ var VerifyToken = require('../auth/verifyToken');
 module.exports = {
     addCategory:addCategory,
     getCategories:getCategories,
-    deleteCategory:deleteCategory
+    deleteCategory:deleteCategory,
+    editCategory:editCategory
 }
 
 function addCategory(req,res,next){
@@ -44,8 +45,45 @@ function addCategory(req,res,next){
     //models.Categories
 }
 
+function editCategory(req,res,next){
+    categoryValidation.addCategory(req,res,function(error,response){
+        if(response.error_status == true){
+            return res.status(603).json({
+                status:false,
+                data:response,
+                message:'validation error'
+            });
+        }
+        models.Categories.findByIdAndUpdate(req.params.id,req.body).then(
+            function(response){
+                if(response){
+                    return res.status(200).json({
+                        status:true,
+                        data:response,
+                        message:'update sucessfuly'
+                    })
+                }
+            }
+        ).catch(function(error){
+            return res.status(203).json({
+                status:true,
+                data:response,
+                message:'data not update'
+            })  
+        })
+    })
+}
 function getCategories(req,res,next){
-    models.Categories.find().then(function(response){
+    query = {};
+    for(var key in req.query){
+        if(req.query[key] != ''){
+            query[key] = req.query[key];
+        }
+         
+    }   
+    models.Categories.find(
+        query
+    ).then(function(response){
         if(response.length > 0){
             data = null;
             message = 'No category found';
@@ -62,7 +100,7 @@ function getCategories(req,res,next){
         return res.status(500).json({
             data:error,
             message:'list could not get may be server problem',
-            status:true
+            status:false
         })
     })
 }

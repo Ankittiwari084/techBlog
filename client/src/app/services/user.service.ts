@@ -97,14 +97,20 @@ export class UserService {
     });    
   }
 
-  getCategories(){
-    return this.http.get(environment.apiUrl+'admin/get_categories',{
+  getCategories(value:string,key:string){
+    return this.http.get(environment.apiUrl+'admin/get_categories?'+key+'='+value,{
       headers:this.getHeader()
     });
   }
 
   addCategory(value){
     return this.http.post(environment.apiUrl+'admin/add_category',value,{
+      headers:this.getHeader()
+    })
+  }
+
+  editCategory(value,id){
+    return this.http.put(environment.apiUrl+'admin/edit_category/'+id,value,{
       headers:this.getHeader()
     })
   }

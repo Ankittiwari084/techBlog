@@ -18,10 +18,10 @@
             <button mat-raised-button color="primary" style="margin-left: 107px;
             margin-top: 2px;
             margin-bottom: 8px;" (click)="openDialog()">Add</button>
-          
+            <i class="material-icons">visibility</i>
         </div>
       </div>
-        <mat-table [dataSource]="dataSource" class="ma_cat" matSort>
+        <mat-table [dataSource]="dataSource" class="ma_cat" matSort > 
         <!-- create a column-->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </mat-header-cell>
@@ -36,6 +36,10 @@
         <ng-container matColumnDef="_id">
           <mat-header-cell *matHeaderCellDef >Actions </mat-header-cell>
           <mat-cell *matCellDef="let category">
+              <a href="javascript:void(0)" (click)="editOpenDailog(category._id)">
+                <mat-icon aria-label="Example icon-button with a edit icon">edit</mat-icon>
+              </a>
+
             <button mat-icon-button color="warn" (click)="deleteSetting(category._id)">
               <mat-icon aria-label="Example icon-button with a delete icon" >delete</mat-icon>
             </button>
