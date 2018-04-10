@@ -4,23 +4,18 @@
     <app-admin-top></app-admin-top>
     <mat-progress-bar mode="indeterminate" *ngIf="!serverResponse"></mat-progress-bar>
     <div class="example-container mat-elevation-z8">
-      <div class="row">
-        <div class="col-md-3">
-          
-        </div>
-        <div class="col-md-3">
-          
-        </div>
-        <div class="col-md-3">
-          
-        </div>
-        <div class="col-md-3">
-            <button mat-raised-button color="primary" style="margin-left: 107px;
-            margin-top: 2px;
-            margin-bottom: 8px;" (click)="openDialog()">Add</button>
-            <i class="material-icons">visibility</i>
-        </div>
-      </div>
+
+      <mat-card>
+          <!-- <button mat-raised-button color="primary"  (click)="openDialog()"><i  class="material-icons">file_download</i>
+          </button>
+
+          <button mat-raised-button color="primary"  (click)="openDialog()"><i  class="material-icons">file_upload</i>
+          </button> -->
+
+          <button mat-raised-button color="primary" (click)="openDialog()"><i  class="material-icons">control_point</i>
+          </button>
+         
+      </mat-card>
         <mat-table [dataSource]="dataSource" class="ma_cat" matSort > 
         <!-- create a column-->
         <ng-container matColumnDef="name">

@@ -27,12 +27,13 @@ export class CategoriesComponent implements OnInit {
   public changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.serverResponse = false;
+    
     this.getCategories();
   }
 
   // get all category data
   getCategories(id = ''){
+    this.serverResponse = false;
     this.userService.getCategories(id,'_id').subscribe(
       (response)=>{
         this.serverResponse = true;
@@ -214,7 +215,6 @@ export class AddCategoryDialog implements OnInit{
   */
 
   checkExist(value:string){
-    console.log(this.addCategoryForm.controls['name'])
     this.userService.getCategories(value,'name').subscribe(
       (response)=>{
         if(response.json().data.length > 0){

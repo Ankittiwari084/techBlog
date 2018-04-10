@@ -16,11 +16,13 @@ export class UserService {
   
 
   constructor(private http:Http,public routePath:ActivatedRoute,public snackBar: MatSnackBar) {}
+  
+  
   loginServices(userData){
     const headers = new Headers({'Content-Type':'application/json'});
-    return this.http.post(environment.apiUrl+'admin/login/',userData,
-    {headers:headers}
-  );
+      return this.http.post(environment.apiUrl+'admin/login/',userData,
+      {headers:headers}
+    );
   }
 
   addSetting(settingData){

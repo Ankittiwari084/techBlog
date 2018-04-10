@@ -20,6 +20,8 @@ import { AddSettingsComponent } from './admin/settings/add-settings.component';
 import { EditSettingComponent } from './admin/settings/edit-setting.component';
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
+import { QuestionComponent } from './admin/question/question.component';
+
 
 const appRoutes:  Routes = [
     {path:'home', component:HomeComponent},
@@ -38,7 +40,8 @@ const appRoutes:  Routes = [
     // category path.
 
     {path:'admin/categories',canActivate:[AuthGuard],component:CategoriesComponent},     
-
+    {path:'admin/questions',canActivate:[AuthGuard],component:QuestionComponent},     
+    
     
     { path: '**', component: HomeComponent },
 ];

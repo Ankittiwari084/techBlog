@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-panel">
+    <app-admin-top></app-admin-top>
+    <mat-progress-bar mode="indeterminate" *ngIf="!serverResponse"></mat-progress-bar>
+    <div class="example-container mat-elevation-z8">
+
+      <mat-card>
+          <button mat-raised-button color="primary" (click)="openDialog()" ><i  class="material-icons">control_point</i>
+          </button>
+      </mat-card>     
+      <mat-table [dataSource]="dataSource" class="ma_cat">
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef >
+            Title
+          </mat-header-cell>
+          <mat-cell *matCellDef="let question">
+            {{question.title}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option_one_value">
+          <mat-header-cell *matHeaderCellDef > Answer One </mat-header-cell>
+          <mat-cell *matCellDef="let question">{{question.option_one_value }}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="option_two_value">
+          <mat-header-cell *matHeaderCellDef > Answer Two </mat-header-cell>
+          <mat-cell *matCellDef="let question">{{question.option_two_value }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option_three_value">
+          <mat-header-cell *matHeaderCellDef > Answer Three </mat-header-cell>
+          <mat-cell *matCellDef="let question">{{question.option_three_value }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option_four_value">
+          <mat-header-cell *matHeaderCellDef > Answer Four </mat-header-cell>
+          <mat-cell *matCellDef="let question">{{question.option_four_value }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="correct_option">
+          <mat-header-cell *matHeaderCellDef > Correct Answer  </mat-header-cell>
+          <mat-cell *matCellDef="let question">{{question.correct_option }}</mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </div>
+    
+  </div>
+</div>    

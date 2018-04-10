@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes } from '@angular/router';
 import { HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatIconModule,MatInputModule, MatGridListModule,MatPaginatorModule, MatTableModule,MatDividerModule,MatProgressBarModule,MatSnackBarModule,MatSortModule,MatDialogModule, MatSlideToggleModule} from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatFormField, MatFormFieldModule, MatIconModule,MatInputModule, MatGridListModule,MatPaginatorModule, MatTableModule,MatDividerModule,MatProgressBarModule,MatSnackBarModule,MatSortModule,MatDialogModule, MatSlideToggleModule,MatOptionModule,MatSelectModule} from '@angular/material';
 import {NotificationsModule, NotificationsService} from 'angular4-notify';
 
 import 'hammerjs';
@@ -37,7 +37,8 @@ import { ResetPasswordComponent } from './admin/forgot-password/reset-password/r
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { AddCategoryDialog } from './admin/categories/categories.component';
-
+import { QuestionComponent } from './admin/question/question.component';
+import { AddQuestionDialog } from './admin/question/question.component';
 
 @NgModule({
   declarations: [
@@ -61,10 +62,14 @@ import { AddCategoryDialog } from './admin/categories/categories.component';
     ResetPasswordComponent,
     ChangePasswordComponent,
     CategoriesComponent,
-    AddCategoryDialog
+    AddCategoryDialog,
+    QuestionComponent,
+    AddQuestionDialog
+    
   ],
   entryComponents: [
-    AddCategoryDialog
+    AddCategoryDialog,
+    AddQuestionDialog
   ],
   imports: [
     AppRoutingModule,
@@ -88,7 +93,9 @@ import { AddCategoryDialog } from './admin/categories/categories.component';
     MatDividerModule,
     MatSortModule,
     MatDialogModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [UserService,AuthGuard,AuthService],
   bootstrap: [AppComponent]
