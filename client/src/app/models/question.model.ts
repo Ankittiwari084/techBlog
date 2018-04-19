@@ -9,6 +9,7 @@ export interface Question{
     option_four_title:string;
     option_four_value:string;
     correct_option:string;
+    _id:string;
 
 
 } 

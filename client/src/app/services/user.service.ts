@@ -17,7 +17,15 @@ export class UserService {
 
   constructor(private http:Http,public routePath:ActivatedRoute,public snackBar: MatSnackBar) {}
   
-  
+  errorHandle(message,error){
+    if(error.status == 403){
+      this.openSnackBar('Token is missing for this user','Please login');
+      return false;
+    }
+    this.openSnackBar(message,'');
+
+  }
+
   loginServices(userData){
     const headers = new Headers({'Content-Type':'application/json'});
       return this.http.post(environment.apiUrl+'admin/login/',userData,
@@ -33,8 +41,13 @@ export class UserService {
     );
   };
 
-  getSetting(){
-    return this.http.get(environment.apiUrl+'admin/get_setting/',{headers:this.getHeader()});
+  getSetting(page_num = ''){
+    return this.http.get(environment.apiUrl+'admin/get_setting/'+page_num,{headers:this.getHeader()});
+  }
+
+  countService(){
+    return this.http.get(environment.apiUrl+'admin/count_setting',{headers:this.getHeader()});
+    
   }
   // this function help to get token
   getToken(){
@@ -122,5 +135,7 @@ export class UserService {
     {headers:this.getHeader()}
   );
   }
+
+
 }
   

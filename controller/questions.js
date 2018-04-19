@@ -83,12 +83,20 @@ function getQuestion(req,res,next){
         if(req.query[key] != ''){
             query[key] = req.query[key];
         }
-         
     }
     models.Question.find(
         query
     ).then(function(response){
+        for(var i = 0; i< response.length; i++){
 
+           // var answare_value = response[i].correct_option;
+            // set option for 
+            //response[i].correct_option =  response[i][answare_value];
+            //response['2'].mobile = '789444444';
+            
+            
+        }
+        // call common function for response.
         return commonFunction.jsonResponse(req,res,200,true,response,'question list') 
         
     }).catch(function(error){

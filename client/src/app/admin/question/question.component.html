@@ -6,7 +6,7 @@
     <div class="example-container mat-elevation-z8">
 
       <mat-card>
-          <button mat-raised-button color="primary" (click)="openDialog()" ><i  class="material-icons">control_point</i>
+          <button mat-raised-button color="primary" [routerLink]="['/admin/add_question']" ><i  class="material-icons">control_point</i>
           </button>
       </mat-card>     
       <mat-table [dataSource]="dataSource" class="ma_cat">
@@ -43,6 +43,19 @@
           <mat-header-cell *matHeaderCellDef > Correct Answer  </mat-header-cell>
           <mat-cell *matCellDef="let question">{{question.correct_option }}</mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef > Actions  </mat-header-cell>
+            <mat-cell *matCellDef="let question">
+                <a [routerLink]="['/admin/edit-question/',question._id]">
+                  <mat-icon aria-label="Example icon-button with a edit icon">edit</mat-icon>
+                </a> 
+                <button mat-icon-button color="warn" (click)="deleteQuestion(question._id)">
+                  <mat-icon aria-label="Example icon-button with a delete icon" >delete</mat-icon>
+                </button>
+            </mat-cell>
+
+          </ng-container>
 
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

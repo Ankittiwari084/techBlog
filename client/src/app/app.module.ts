@@ -38,7 +38,8 @@ import { ChangePasswordComponent } from './admin/change-password/change-password
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { AddCategoryDialog } from './admin/categories/categories.component';
 import { QuestionComponent } from './admin/question/question.component';
-import { AddQuestionDialog } from './admin/question/question.component';
+import { AddQuestionDialog } from './admin/question/add_question.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AddQuestionDialog } from './admin/question/question.component';
     CategoriesComponent,
     AddCategoryDialog,
     QuestionComponent,
-    AddQuestionDialog
+    AddQuestionDialog,
+    PaginationComponent
     
   ],
   entryComponents: [

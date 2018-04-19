@@ -20,7 +20,8 @@ module.exports = {
     sendMailForgotPassword:sendMailForgotPassword,
     resetPassword:resetPassword,
     getOldPassword:getOldPassword,
-    changePassword:changePassword
+    changePassword:changePassword,
+    getCount:getCount
 }
 
 
@@ -120,8 +121,32 @@ function addSetting(req,res,next){
     });
 }
 
+function getCount(req,res,next){
+    models.Setting.count().then(function(response){
+        console.log(response);
+        return res.status(200).json({
+            status:'success',
+            data:response,
+            message:'count sucessfull'
+        })
+    }).catch(function(err){
+        return res.status(500).json({
+            status:false,
+            data:err,
+            message:'count not found'
+        })
+    })
+}
+
 function getSetting(req,res,next){
-    models.Setting.find().then(function(response){
+    limit = 10;
+    skip_limit = 0;
+    page_size = req.params.page_num;
+    if(page_size != 0){
+        skip_limit = (page_size * limit) -  limit; 
+    }
+
+    models.Setting.find().skip(skip_limit).limit(limit).then(function(response){
         return res.status(200).json({
             status:'success',
             data:response,

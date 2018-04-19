@@ -216,7 +216,9 @@ export class AddCategoryDialog implements OnInit{
 
   checkExist(value:string){
     this.userService.getCategories(value,'name').subscribe(
+    
       (response)=>{
+        console.log(response);
         if(response.json().data.length > 0){
           
             //this.addCategoryForm.get('name').setErrors({name_errors:true})

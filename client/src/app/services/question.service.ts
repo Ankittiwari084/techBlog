@@ -20,4 +20,14 @@ export class QuestionService {
       headers:this.userService.getHeader()
     });
   }
+  saveQuestion(formValue,id=''){
+    if(id){
+      return this.http.put(environment.apiUrl+'admin/edit_question/'+id,formValue,{
+        headers:this.userService.getHeader()
+      })
+    }
+    return this.http.post(environment.apiUrl+'admin/add_question',formValue,{
+      headers:this.userService.getHeader()
+    })
+  }
 }

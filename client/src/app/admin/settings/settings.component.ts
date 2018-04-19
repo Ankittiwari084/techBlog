@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs/Observable';
@@ -20,7 +20,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public userService:UserService,public router:Router,public route:ActivatedRoute,public snackBar:MatSnackBar) { 
 
@@ -30,17 +29,36 @@ export class SettingsComponent implements OnInit {
   dataSource:Setting[];
   public errormessage:string;
   public successmessage:string;
+  public pageCount:number[] = [];
   displayedColumns = ["setting_label","createdAt","updatedAt","_id"];
+  
   ngOnInit() {
+
     this.serverResponse = false;
-    this.userService.getSetting().subscribe(
+    this.userService.getSetting('0').subscribe(
       (response)=>{
+        this.countSetting();
         this.serverResponse = true;
         this.dataSource = response.json().data;  
       },
       (error)=>{
         
       });
+  }
+
+  countSetting(){
+    this.userService.countService().subscribe(
+      (Response)=>{
+        var total_number = Response.json().data;
+        var links = Math.ceil(total_number/10);
+        for(var i = 1; i<= links; i++ ){
+          this.pageCount.push(i);
+        }
+      },
+      (error)=>{
+
+      }
+    )
   }
 
   getDataFromApi(){
@@ -66,6 +84,15 @@ export class SettingsComponent implements OnInit {
       (error)=>{
         this.errormessage = "Data not delete may be server problem"
       });
+  }
+
+
+  /**
+   * Desc: this function help to recive emit event.
+   */
+  receiveMessage($event) {
+    console.log($event);
+    this.dataSource = $event
   }
 }  
 

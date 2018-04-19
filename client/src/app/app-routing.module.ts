@@ -21,6 +21,8 @@ import { EditSettingComponent } from './admin/settings/edit-setting.component';
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { QuestionComponent } from './admin/question/question.component';
+import { AddQuestionDialog } from './admin/question/add_question.component';
+
 
 
 const appRoutes:  Routes = [
@@ -41,6 +43,8 @@ const appRoutes:  Routes = [
 
     {path:'admin/categories',canActivate:[AuthGuard],component:CategoriesComponent},     
     {path:'admin/questions',canActivate:[AuthGuard],component:QuestionComponent},     
+    {path:'admin/add_question',canActivate:[AuthGuard],component:AddQuestionDialog},     
+    {path:'admin/edit-question/:id',canActivate:[AuthGuard],component:AddQuestionDialog},     
     
     
     { path: '**', component: HomeComponent },

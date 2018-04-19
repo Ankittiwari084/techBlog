@@ -1,76 +1,92 @@
-<form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()">
-    <mat-grid-list cols="1">
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-panel">
+      <app-admin-top></app-admin-top>
       
-      <mat-form-field class="example-full-width" style="width: 100%">
-        <textarea matInput  placeholder="Question" formControlName = "title" name="title" class="example-full-width"></textarea>
-      </mat-form-field>
-      <mat-error *ngIf="!addQuestionForm.controls['title'].valid && addQuestionForm.controls['title'].touched">Please enter question </mat-error>
-
-    </mat-grid-list>
-
-    <mat-card-actions>
-        <mat-form-field class="example-full-width" style="width: 5%">
-            <input matInput   formControlName = "option_one_title" name="option_one_title" >
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 92%">
-            <textarea matInput  placeholder="Answer One" formControlName = "option_one_value" name="option_one_value" ></textarea>
-        </mat-form-field>
-
-        <mat-error *ngIf="!addQuestionForm.controls['option_one_value'].valid && addQuestionForm.controls['option_one_value'].touched">Please enter Answer </mat-error>
-
-    </mat-card-actions>
-
-    <mat-card-actions>
-        <mat-form-field class="example-full-width" style="width: 5%">
-            <input matInput   formControlName = "option_two_title" name="option_two_title" >
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 92%">
-            <textarea matInput  placeholder="Answer Two" formControlName = "option_two_value" name="option_two_value" ></textarea>
-        </mat-form-field>
-        <mat-error *ngIf="!addQuestionForm.controls['option_two_value'].valid && addQuestionForm.controls['option_two_value'].touched">Please enter Answer </mat-error>
-    </mat-card-actions>
-
-    <mat-card-actions>
-        <mat-form-field class="example-full-width" style="width: 5%">
-            <input matInput   formControlName = "option_three_title" name="option_three_title" >
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 92%">
-            <textarea matInput  placeholder="Answer Three" formControlName = "option_three_value" name="option_three_value" ></textarea>
-        </mat-form-field>
-        <mat-error *ngIf="!addQuestionForm.controls['option_three_value'].valid && addQuestionForm.controls['option_three_value'].touched">Please enter Answer </mat-error>
-    </mat-card-actions>
-
-    <mat-card-actions>
-        <mat-form-field class="example-full-width" style="width: 5%">
-            <input matInput   formControlName = "option_four_title" name="option_four_title" >
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 92%">
-            <textarea matInput  placeholder="Answer Four" formControlName = "option_four_value" name="option_four_value" ></textarea>
-        </mat-form-field>
-
-        <mat-error *ngIf="!addQuestionForm.controls['option_four_value'].valid && addQuestionForm.controls['option_four_value'].touched">Please enter Answer </mat-error>
-
-    </mat-card-actions>
-
-    <mat-card-actions>
-        <mat-form-field style="width:100%">
-            <mat-select placeholder="Correct Answer" >
-              <mat-option value="option_one_value">One</mat-option>
-              <mat-option value="option_two_value">Two</mat-option>
-              <mat-option value="option_three_value">Three</mat-option>
-              <mat-option value="option_four_value">Four</mat-option>
+      <form [formGroup]="addQuestionForm" (ngSubmit)="onSubmit()" >
+        <mat-card class="ma_cat">
+            <mat-grid-list cols="1">
               
-            </mat-select>
-          </mat-form-field>
-    </mat-card-actions>
-    <div class="button-row pull-right">
-        <button  mat-raised-button color="primary" [disabled]="!addQuestionForm.valid">Submit</button>
+              <mat-form-field class="example-full-width" style="width: 100%">
+                <textarea matInput  placeholder="Question" rows="5" cols="40" formControlName = "title" name="title" class="example-full-width"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="!addQuestionForm.controls['title'].valid && addQuestionForm.controls['title'].touched">Please enter question </mat-error>
+        
+            </mat-grid-list>
+        </mat-card> 
+
+        <mat-card class="ma_cat">
+            <mat-card-actions>
+                <mat-form-field class="example-full-width" style="width: 5%">
+                    <input matInput   formControlName = "option_one_title" name="option_one_title" >
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width" style="width: 92%">
+                    <textarea matInput  placeholder="Answer One" rows="5" cols="40" formControlName = "option_one_value" name="option_one_value" ></textarea>
+                </mat-form-field>
+        
+                <mat-error *ngIf="!addQuestionForm.controls['option_one_value'].valid && addQuestionForm.controls['option_one_value'].touched">Please enter Answer </mat-error>
+            </mat-card-actions>
+        </mat-card>        
+            
+        <mat-card class="ma_cat">
+            <mat-card-actions>
+                <mat-form-field class="example-full-width" style="width: 5%">
+                    <input matInput   formControlName = "option_two_title" name="option_two_title" >
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width" style="width: 92%">
+                    <textarea matInput  placeholder="Answer Two" rows="5" cols="40" formControlName = "option_two_value" name="option_two_value" ></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="!addQuestionForm.controls['option_two_value'].valid && addQuestionForm.controls['option_two_value'].touched">Please enter Answer </mat-error>
+            </mat-card-actions>
+        </mat-card>        
+        
+        <mat-card class="ma_cat">
+            <mat-card-actions>
+                <mat-form-field class="example-full-width" style="width: 5%">
+                    <input matInput   formControlName = "option_three_title" name="option_three_title" >
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width" style="width: 92%">
+                    <textarea matInput  placeholder="Answer Three" rows="5" cols="40" formControlName = "option_three_value" name="option_three_value" ></textarea>
+                </mat-form-field>
+                <mat-error *ngIf="!addQuestionForm.controls['option_three_value'].valid && addQuestionForm.controls['option_three_value'].touched">Please enter Answer </mat-error>
+            </mat-card-actions>
+        </mat-card>
+        
+        <mat-card class="ma_cat">
+            <mat-card-actions>
+                    <mat-form-field class="example-full-width" style="width: 5%">
+                        <input matInput   formControlName = "option_four_title" name="option_four_title" >
+                    </mat-form-field>
+            
+                    <mat-form-field class="example-full-width" style="width: 92%">
+                        <textarea matInput  placeholder="Answer Four" rows="5" cols="40" formControlName = "option_four_value" name="option_four_value" ></textarea>
+                    </mat-form-field>
+            
+                    <mat-error *ngIf="!addQuestionForm.controls['option_four_value'].valid && addQuestionForm.controls['option_four_value'].touched">Please enter Answer </mat-error>
+            
+                </mat-card-actions>
+        </mat-card>    
+        <mat-card class="ma_cat">
+            <mat-card-actions>
+                    <mat-form-field style="width:100%">
+                        <mat-select placeholder="Correct Answer" [(value)]="selected" formControlName = "correct_option" name="correct_option" >
+                            <mat-option value="option_one_value">One</mat-option>
+                            <mat-option value="option_two_value">Two</mat-option>
+                            <mat-option value="option_three_value">Three</mat-option>
+                            <mat-option value="option_four_value">Four</mat-option>
+                            
+                        </mat-select>
+                        </mat-form-field>
+                </mat-card-actions>
+        </mat-card>
+        <mat-card class="ma_cat">
+            <mat-card-actions >
+                <button  mat-raised-button color="primary"  >Submit</button>
+            </mat-card-actions>  
+        </mat-card>                   
+    </form>         
     </div>
-  
-      
-    
-</form> 
+  </div>  

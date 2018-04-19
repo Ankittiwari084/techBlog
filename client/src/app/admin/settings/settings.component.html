@@ -4,8 +4,6 @@
     <app-admin-top></app-admin-top>
     <mat-progress-bar mode="indeterminate" *ngIf="!serverResponse"></mat-progress-bar>
     <div class="example-container mat-elevation-z8">
-        <!-- <div class="alert alert-danger" *ngIf="errormessage">{{errormessage}}</div> -->
-        <!-- <div class="alert alert-success" *ngIf="successmessage">{{successmessage}}</div> -->
         
         <mat-table [dataSource]="dataSource" class="ma_cat">
         <!-- create a column-->
@@ -42,8 +40,14 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
-      <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"  [showFirstLastButtons]="true">
-      </mat-paginator>
+      <mat-card class="pagination_cart"> 
+          <mat-card-actions>
+              <!-- <a (click)='pagination(count)' *ngFor="let count of pageCount" class="btn btn-default anch" role="button" >{{count}}</a> -->
+              <app-pagination [paginationArray]="pageCount" (paginationArray)="receiveMessage($event)"></app-pagination>
+            </mat-card-actions>  
+        
+      </mat-card>
+     
     </div>
       
   </div>
