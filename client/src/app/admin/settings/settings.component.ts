@@ -30,6 +30,7 @@ export class SettingsComponent implements OnInit {
   public errormessage:string;
   public successmessage:string;
   public pageCount:number[] = [];
+  public module_name:string;
   displayedColumns = ["setting_label","createdAt","updatedAt","_id"];
   
   ngOnInit() {
@@ -50,10 +51,8 @@ export class SettingsComponent implements OnInit {
     this.userService.countService().subscribe(
       (Response)=>{
         var total_number = Response.json().data;
-        var links = Math.ceil(total_number/10);
-        for(var i = 1; i<= links; i++ ){
-          this.pageCount.push(i);
-        }
+        this.module_name = 'setting';
+        this.userService.makeArrayForPagination(total_number,this.pageCount);
       },
       (error)=>{
 
@@ -91,7 +90,6 @@ export class SettingsComponent implements OnInit {
    * Desc: this function help to recive emit event.
    */
   receiveMessage($event) {
-    console.log($event);
     this.dataSource = $event
   }
 }  

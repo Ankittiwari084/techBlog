@@ -45,9 +45,10 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
+
+      <app-pagination [paginationArray]="pageCount" [moduleName]="module_name" (dataEvent)="receiveMessage($event)"></app-pagination>
       
-      <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"  [showFirstLastButtons]="true">
-      </mat-paginator>
+      
     </div>
     
   </div>

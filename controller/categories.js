@@ -75,6 +75,14 @@ function editCategory(req,res,next){
 }
 function getCategories(req,res,next){
     query = {};
+
+    limit = 10;
+    skip_limit = 0;
+    page_size = req.params.page_num;
+    if(page_size != 0){
+        skip_limit = (page_size * limit) -  limit; 
+    }
+
     for(var key in req.query){
         if(req.query[key] != ''){
             query[key] = req.query[key];
@@ -83,19 +91,25 @@ function getCategories(req,res,next){
     }   
     models.Categories.find(
         query
-    ).then(function(response){
-        if(response.length > 0){
-            data = null;
-            message = 'No category found';
-        }
-        data = response;
-        message = 'category list ';
+    ).skip(skip_limit).limit(limit).then(function(response){
+        // query run for count.
+        models.Categories.count().then(function(countResponse){
+            if(response.length > 0){
+                data = null;
+                message = 'No category found';
+            }
+            data = response;
+            message = 'category list ';
+    
+            return res.status(200).json({
+                data:data,
+                countData:countResponse,
+                message:message,
+                status:true
+            })
 
-        return res.status(200).json({
-            data:data,
-            message:message,
-            status:true
         })
+        
     }).catch(function(error){
         return res.status(500).json({
             data:error,

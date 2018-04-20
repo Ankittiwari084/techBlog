@@ -3,6 +3,8 @@ import { Http, Headers,  } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
+import { paginationEnvironment } from '../../environments/environment';
+
 import {RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { Setting } from '../models/setting.model';
 import { Categories } from '../models/categories.model';
@@ -136,6 +138,17 @@ export class UserService {
   );
   }
 
+  getPaginationData(page_num = '',moduleName = ''){
+    return this.http.get(environment.apiUrl+paginationEnvironment[moduleName]+page_num,{headers:this.getHeader()});
+  }
+
+  makeArrayForPagination(total_number,pageCount){
+    var links = Math.ceil(total_number/10);
+    for(var i = 1; i<= links; i++ ){
+      pageCount.push(i);
+    }
+    return pageCount;
+  }
 
 }
   

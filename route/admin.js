@@ -24,7 +24,7 @@ router.post('/change_password',VerifyToken.verifyToken,admin.changePassword);
 // category module route.
 
 router.post('/add_category',VerifyToken.verifyToken,category.addCategory);
-router.get('/get_categories',VerifyToken.verifyToken,category.getCategories);
+router.get('/get_categories/:page_num',VerifyToken.verifyToken,category.getCategories);
 router.get('/delete_category/:id',VerifyToken.verifyToken,category.deleteCategory);
 router.put('/edit_category/:id',VerifyToken.verifyToken,category.editCategory)
 

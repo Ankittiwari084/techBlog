@@ -22,10 +22,11 @@ export class CategoriesComponent implements OnInit {
   dataSource = new MatTableDataSource<Categories>();
   displayedColumns = ['name','is_publish','_id'];
   constructor(public userService:UserService,
-   public dialog: MatDialog,
-   private route:ActivatedRoute,
+  public dialog: MatDialog,
+  private route:ActivatedRoute,
   public changeDetectorRefs: ChangeDetectorRef) { }
-
+  public pageCount:number[] = [];
+  public module_name:string;
   ngOnInit() {
     
     this.getCategories();
@@ -36,13 +37,17 @@ export class CategoriesComponent implements OnInit {
     this.serverResponse = false;
     this.userService.getCategories(id,'_id').subscribe(
       (response)=>{
+        var total_number = response.json().countData;
+        this.module_name = 'category';
+        // this function convert number of record into pagination.
+        this.userService.makeArrayForPagination(total_number,this.pageCount);
+        
         this.serverResponse = true;
+
         if(response.json().data != null){
           // assign response for all category in datasource.
           this.dataSource = response.json().data;
           
-        }else{
-        //this.dataSource = name:'No Record Found',is_publish:0,_id:0};
         }
         this.dataSource.sort = this.sort;
         this.changeDetectorRefs.detectChanges();
@@ -154,6 +159,14 @@ export class CategoriesComponent implements OnInit {
       )
     }
 
+  }
+
+    /**
+   * Desc: this function help to recive emit event.
+   */
+  receiveMessage($event) {
+    console.log("$event",$event);
+    this.dataSource = $event
   }
 
   

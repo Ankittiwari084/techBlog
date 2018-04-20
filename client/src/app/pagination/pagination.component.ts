@@ -9,6 +9,8 @@ import { UserService } from '../services/user.service';
 export class PaginationComponent implements OnInit {
 
   @Input() paginationArray:any;
+  @Input() moduleName:string;
+  
   @Output() dataEvent = new EventEmitter();
   constructor(private userService:UserService) { }
 
@@ -16,8 +18,12 @@ export class PaginationComponent implements OnInit {
   }
 
 
+  /**
+   * this function help to pagination
+   * @param page_number 
+   */
   pagination(page_number){
-    this.userService.getSetting(page_number).subscribe(
+    this.userService.getPaginationData(page_number,this.moduleName).subscribe(
       (response)=>{
         this.dataEvent.emit(response.json().data);
       },

@@ -7,3 +7,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/',
 };
+
+export const paginationEnvironment = {
+  setting:'admin/get_setting/',
+  category:'admin/get_categories/'
+}
