@@ -8,17 +8,17 @@
         <mat-table [dataSource]="dataSource" class="ma_cat">
         <!-- create a column-->
         <ng-container matColumnDef="setting_label">
-          <mat-header-cell *matHeaderCellDef> Setting Label </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef (click)="sort('setting_label')"> Setting Label </mat-header-cell>
           <mat-cell *matCellDef="let setting">{{setting.setting_label}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">
-          <mat-header-cell *matHeaderCellDef> created At </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef (click)="sort('createdAt')"> created At </mat-header-cell>
           <mat-cell *matCellDef="let setting">{{setting.createdAt | date:'fullDate'}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="updatedAt">
-          <mat-header-cell *matHeaderCellDef> Update At</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef (click)="sort('updatedAt')"> Update At</mat-header-cell>
           <mat-cell *matCellDef="let setting">{{setting.updatedAt | date:'fullDate'}} </mat-cell>
         </ng-container>
 

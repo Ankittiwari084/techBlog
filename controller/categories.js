@@ -12,6 +12,7 @@ var VerifyToken = require('../auth/verifyToken');
 module.exports = {
     addCategory:addCategory,
     getCategories:getCategories,
+    getSingleCategory:getSingleCategory,
     deleteCategory:deleteCategory,
     editCategory:editCategory
 }
@@ -73,6 +74,36 @@ function editCategory(req,res,next){
         })
     })
 }
+
+function getSingleCategory(req,res,next){
+    query = {};
+
+
+    for(var key in req.query){
+        if(req.query[key] != ''){
+            query[key] = req.query[key];
+        }
+         
+    }   
+    models.Categories.find(
+        query
+    ).then(function(response){
+        // query run for count.
+        return res.status(200).json({
+            data:data,
+            message:message,
+            status:true
+        })
+        
+    }).catch(function(error){
+        return res.status(500).json({
+            data:error,
+            message:'list could not get may be server problem',
+            status:false
+        })
+    })
+}
+
 function getCategories(req,res,next){
     query = {};
 
@@ -83,15 +114,14 @@ function getCategories(req,res,next){
         skip_limit = (page_size * limit) -  limit; 
     }
 
-    for(var key in req.query){
-        if(req.query[key] != ''){
-            query[key] = req.query[key];
-        }
-         
-    }   
-    models.Categories.find(
-        query
-    ).skip(skip_limit).limit(limit).then(function(response){
+   sort = {};
+
+   if(req.query.order){
+       sort[req.query.field] = req.query.order; 
+   }
+    models.Categories.find()
+    .sort(sort)
+    .skip(skip_limit).limit(limit).then(function(response){
         // query run for count.
         models.Categories.count().then(function(countResponse){
             if(response.length > 0){

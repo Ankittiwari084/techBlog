@@ -18,7 +18,6 @@ import { Categories } from '../../models/categories.model';
 
 export class CategoriesComponent implements OnInit {
   serverResponse:boolean = true;
-  @ViewChild(MatSort) sort:MatSort;
   dataSource = new MatTableDataSource<Categories>();
   displayedColumns = ['name','is_publish','_id'];
   constructor(public userService:UserService,
@@ -27,29 +26,41 @@ export class CategoriesComponent implements OnInit {
   public changeDetectorRefs: ChangeDetectorRef) { }
   public pageCount:number[] = [];
   public module_name:string;
+  public order:number;
+  public field_name:string;
   ngOnInit() {
-    
-    this.getCategories();
+    // set by default.
+    this.module_name = 'category';
+    this.order = 1;
+    this.field_name = 'name';
+    this.getCategories('','',0,this.order,this.field_name);
   }
 
-  // get all category data
-  getCategories(id = ''){
+  /**
+   * 
+   * @param id 
+   * @param key 
+   * @param page_num 
+   * @param order 
+   * @param field_name 
+   */
+  getCategories(id = '',key = '' ,page_num = 0,order = 1 ,field_name = '' ){
     this.serverResponse = false;
-    this.userService.getCategories(id,'_id').subscribe(
+    this.userService.getCategories(id,'',page_num,order,field_name).subscribe(
       (response)=>{
+        // change sort order.
+        this.order = (this.order) * (-1);
         var total_number = response.json().countData;
-        this.module_name = 'category';
         // this function convert number of record into pagination.
         this.userService.makeArrayForPagination(total_number,this.pageCount);
-        
+
         this.serverResponse = true;
 
         if(response.json().data != null){
           // assign response for all category in datasource.
           this.dataSource = response.json().data;
-          
+
         }
-        this.dataSource.sort = this.sort;
         this.changeDetectorRefs.detectChanges();
       },
       (error)=>{
@@ -71,7 +82,7 @@ export class CategoriesComponent implements OnInit {
       }
     }).afterClosed().subscribe(
       result=>{
-        this.getCategories();
+        this.getCategories('','',0,this.order,this.field_name);
       }
     )
   }
@@ -84,7 +95,7 @@ export class CategoriesComponent implements OnInit {
   editOpenDailog(id){
    var singleCategoryData = '';
     // call api for getting single category
-    this.userService.getCategories(id,'_id').subscribe(
+    this.userService.getCategories(id,'_id',0,this.order,this.field_name).subscribe(
       (response)=>{
         if(response.json().data.length){
           singleCategoryData = response.json().data[0];
@@ -98,7 +109,7 @@ export class CategoriesComponent implements OnInit {
               }
             }).afterClosed().subscribe(
               result=>{
-                this.getCategories();
+                this.getCategories('','',0,this.order,this.field_name);
               }
             )
 
@@ -117,44 +128,44 @@ export class CategoriesComponent implements OnInit {
       (response)=>{
         this.serverResponse = true;
         this.userService.openSnackBar('Category Delete successfully','');
-        this.getCategories();
+        this.getCategories('','',0,this.order,this.field_name);
       },
       (error)=>{
         this.userService.openSnackBar('Data not delete may be server problem','');
-      });    
+      });
   }
 
 
   addCategory(fromValue,dialogRef,id=null){
-    
+
     if(id != null){
       // edit category.
       this.userService.editCategory(fromValue,id).subscribe(
         (response)=>{
-          this.getCategories();        
+          this.getCategories('','',0,this.order,this.field_name);
           this.userService.openSnackBar(response.json().message,'');
           dialogRef.close();
-         
+
         },
         (error)=>{
           this.userService.openSnackBar('Category not updated may be server problem','');
           dialogRef.close();
-          
+
         }
       )
     }else{
       // add category.
       this.userService.addCategory(fromValue).subscribe(
         (response)=>{
-          this.getCategories();        
+          this.getCategories('','',0,this.order,this.field_name);
           this.userService.openSnackBar(response.json().message,'');
           dialogRef.close();
-         
+
         },
         (error)=>{
           this.userService.openSnackBar('Category not added may be server problem','');
           dialogRef.close();
-          
+
         }
       )
     }
@@ -169,7 +180,11 @@ export class CategoriesComponent implements OnInit {
     this.dataSource = $event
   }
 
-  
+  sort($event){
+    this.getCategories('','',0,this.order,$event);
+    
+  }
+
 }
 
 
@@ -188,7 +203,6 @@ export class AddCategoryDialog implements OnInit{
   private category:CategoriesComponent
   ) {}
 
-  @ViewChild(MatSort) sortt:MatSort;
   dataSource = new MatTableDataSource<Categories>();
   displayedColumns = ['name','is_publish','_id'];
 
@@ -200,7 +214,7 @@ export class AddCategoryDialog implements OnInit{
 
   addCategoryForm:FormGroup;
   ngOnInit(){
-    // check if edit action 
+    // check if edit action
     if(this.data.action == 'edit'){
       this.name = this.data.categoryData.name;
       this.is_publish = this.data.categoryData.is_publish;
@@ -219,7 +233,7 @@ export class AddCategoryDialog implements OnInit{
     }else{
       this.category.addCategory(this.addCategoryForm.value,this.dialogRef,id);
     }
-    
+
   }
   /*
   Name: checkExist
@@ -229,21 +243,21 @@ export class AddCategoryDialog implements OnInit{
 
   checkExist(value:string){
     this.userService.getCategories(value,'name').subscribe(
-    
+
       (response)=>{
         console.log(response);
         if(response.json().data.length > 0){
-          
+
             //this.addCategoryForm.get('name').setErrors({name_errors:true})
-          
-         
+
+
         }
       },
       (error)=>{
-        this.userService.openSnackBar('Server problem','');        
+        this.userService.openSnackBar('Server problem','');
       }
     )
-  } 
-  
+  }
+
 
 }

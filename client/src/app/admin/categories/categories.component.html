@@ -6,25 +6,20 @@
     <div class="example-container mat-elevation-z8">
 
       <mat-card>
-          <!-- <button mat-raised-button color="primary"  (click)="openDialog()"><i  class="material-icons">file_download</i>
-          </button>
-
-          <button mat-raised-button color="primary"  (click)="openDialog()"><i  class="material-icons">file_upload</i>
-          </button> -->
-
+        
           <button mat-raised-button color="primary" (click)="openDialog()"><i  class="material-icons">control_point</i>
           </button>
          
       </mat-card>
-        <mat-table [dataSource]="dataSource" class="ma_cat" matSort > 
+        <mat-table [dataSource]="dataSource" class="ma_cat"  > 
         <!-- create a column-->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef (click)="sort('name')"> Category Name </mat-header-cell>
           <mat-cell *matCellDef="let category">{{category.name }}</mat-cell>
         </ng-container>   
         
         <ng-container matColumnDef="is_publish">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Is Publish </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef (click)="sort('is_publish')" >Is Publish </mat-header-cell>
           <mat-cell *matCellDef="let category">{{category.is_publish?'Yes':'No'}}</mat-cell>
         </ng-container>   
 

@@ -62,6 +62,7 @@ export class EditSettingComponent implements OnInit {
     control.removeAt(0);
     this.userService.getSingleSetting(this.routePath.snapshot.paramMap.get('id')).subscribe(
       (response)=>{
+        console.log(response.json().data);
         var fields = response.json().data.field;
         // set setting_label value
         this.settingForm.controls['setting_label'].setValue(response.json().data.setting_label);

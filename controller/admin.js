@@ -123,7 +123,6 @@ function addSetting(req,res,next){
 
 function getCount(req,res,next){
     models.Setting.count().then(function(response){
-        console.log(response);
         return res.status(200).json({
             status:'success',
             data:response,
@@ -139,14 +138,24 @@ function getCount(req,res,next){
 }
 
 function getSetting(req,res,next){
+    // this code for limit
     limit = 10;
     skip_limit = 0;
     page_size = req.params.page_num;
     if(page_size != 0){
         skip_limit = (page_size * limit) -  limit; 
     }
+    // end limit section.
 
-    models.Setting.find().skip(skip_limit).limit(limit).then(function(response){
+    // set sort object.
+    sort = {}
+    if(req.query.field){
+        sort[req.query.field] = parseInt(req.query.order)
+    }
+    models.Setting.find()
+    .sort(sort)
+    .skip(skip_limit)
+    .limit(limit).then(function(response){
         return res.status(200).json({
             status:'success',
             data:response,

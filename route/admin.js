@@ -13,7 +13,7 @@ router.post('/add_setting/',VerifyToken.verifyToken,admin.addSetting);
 router.get('/get_setting/:page_num',VerifyToken.verifyToken,admin.getSetting);
 router.get('/count_setting',VerifyToken.verifyToken,admin.getCount);
 
-router.get('/get_setting/:id',VerifyToken.verifyToken,admin.getSingleSetting);
+router.get('/get_single_setting/:id',VerifyToken.verifyToken,admin.getSingleSetting);
 router.put('/update_setting/:id',VerifyToken.verifyToken,admin.updateSetting);
 router.get('/delete_setting/:id',VerifyToken.verifyToken,admin.deleteSetting);
 router.post('/send_email_forgot_password/',admin.sendMailForgotPassword);
@@ -24,6 +24,8 @@ router.post('/change_password',VerifyToken.verifyToken,admin.changePassword);
 // category module route.
 
 router.post('/add_category',VerifyToken.verifyToken,category.addCategory);
+router.get('/get_single_categories/',VerifyToken.verifyToken,category.getSingleCategory);
+
 router.get('/get_categories/:page_num',VerifyToken.verifyToken,category.getCategories);
 router.get('/delete_category/:id',VerifyToken.verifyToken,category.deleteCategory);
 router.put('/edit_category/:id',VerifyToken.verifyToken,category.editCategory)

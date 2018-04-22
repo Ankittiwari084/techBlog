@@ -43,8 +43,8 @@ export class UserService {
     );
   };
 
-  getSetting(page_num = ''){
-    return this.http.get(environment.apiUrl+'admin/get_setting/'+page_num,{headers:this.getHeader()});
+  getSetting(page_num = '',order,field_name){
+    return this.http.get(environment.apiUrl+'admin/get_setting/'+page_num+'?order='+order+'&field='+field_name,{headers:this.getHeader()});
   }
 
   countService(){
@@ -66,7 +66,7 @@ export class UserService {
   }
 
   getSingleSetting(id){
-    return  this.http.get(environment.apiUrl+'admin/get_setting/'+id,{headers:this.getHeader()});
+    return  this.http.get(environment.apiUrl+'admin/get_single_setting/'+id,{headers:this.getHeader()});
   }
 
   json(response){
@@ -113,11 +113,26 @@ export class UserService {
       headers:this.getHeader()
     });    
   }
-
-  getCategories(value:string,key:string){
-    return this.http.get(environment.apiUrl+'admin/get_categories?'+key+'='+value,{
-      headers:this.getHeader()
-    });
+  /**
+   * 
+   * @param value ( value for where condition )
+   * @param key (key for value like id = 1 )
+   * @param page_num ( this meanse number of page like 0 or 1)
+   * @param order (asc, desc)
+   * @param field_name ( like title = asc or like title = desc)
+   */
+  getCategories(value:string = '',key:string,page_num = 0,order = 1,field_name = '' ){
+    if(value && key){
+      return this.http.get(environment.apiUrl+'admin/get_single_categories?'+key+'='+value,{
+        headers:this.getHeader()
+      });
+    }else{
+      console.log(page_num);
+      return this.http.get(environment.apiUrl+'admin/get_categories/'+page_num+'?order='+order+'&field='+field_name,{
+        headers:this.getHeader()
+      });
+    }
+    
   }
 
   addCategory(value){
@@ -143,6 +158,7 @@ export class UserService {
   }
 
   makeArrayForPagination(total_number,pageCount){
+    pageCount.length = 0;
     var links = Math.ceil(total_number/10);
     for(var i = 1; i<= links; i++ ){
       pageCount.push(i);
