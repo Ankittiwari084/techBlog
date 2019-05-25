@@ -6,8 +6,8 @@ module.exports = {
         'port':'587',
         'secure':'false',
         'auth': {
-            'user': 'ankittiwari084@gmail.com', // generated ethereal user
-            'pass': 'papa199519951995' // generated ethereal password
+            'user': '**********@****.com', // generated ethereal user
+            'pass': '**********' // generated ethereal password
         }
     }
 };
